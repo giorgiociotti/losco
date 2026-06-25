@@ -15,7 +15,7 @@ public class ArmiDao {
         this.connection = Database.getInstance().getConnection();
     }
 
-    // ── CREATE ────────────────────────────────────────────────────────────────
+    //CREATE
 
     public void insert(Armi a) {
         String sql = "INSERT INTO armi (nome, caricatore, calibro, automatica, colore, id_criminale) " +
@@ -37,8 +37,7 @@ public class ArmiDao {
         }
     }
 
-    // ── READ ──────────────────────────────────────────────────────────────────
-
+    //READ
     public List<Armi> findAll() {
         List<Armi> lista = new ArrayList<>();
         String sql = "SELECT * FROM armi";
@@ -88,7 +87,7 @@ public class ArmiDao {
         return lista;
     }
 
-    // ── UPDATE ────────────────────────────────────────────────────────────────
+    //UPDATE
 
     public void update(Armi a) {
         String sql = "UPDATE armi SET nome=?, caricatore=?, calibro=?, automatica=?, colore=?, id_criminale=? WHERE id=?";
@@ -131,8 +130,7 @@ public class ArmiDao {
         }
     }
 
-    // ── DELETE ────────────────────────────────────────────────────────────────
-
+    //DELETE
     public void delete(int id) {
         String sql = "DELETE FROM armi WHERE id=?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -144,8 +142,7 @@ public class ArmiDao {
         }
     }
 
-    // ── UTILITY ───────────────────────────────────────────────────────────────
-
+    //UTILITY
     private Armi mapRow(ResultSet rs) throws SQLException {
         Armi a = new Armi();
         a.setId(rs.getInt("id"));

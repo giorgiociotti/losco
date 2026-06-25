@@ -16,7 +16,7 @@ public class CriminaleDao {
         this.connection = Database.getInstance().getConnection();
     }
 
-    // ── CREATE ────────────────────────────────────────────────────────────────
+    // CREATE
 
     public void insert(Criminali c) {
         String sql = "INSERT INTO criminali (nome, cognome, alias, dob, gruppo) VALUES (?, ?, ?, ?, ?)";
@@ -28,21 +28,23 @@ public class CriminaleDao {
             ps.setString(5, c.getGruppo());
             ps.executeUpdate();
             ResultSet keys = ps.getGeneratedKeys();
-            if (keys.next()) c.setId(keys.getInt(1));
+            if (keys.next())
+                c.setId(keys.getInt(1));
             System.out.println("Criminale inserito con id=" + c.getId());
         } catch (SQLException e) {
             System.out.println("Errore insert criminale: " + e.getMessage());
         }
     }
 
-    // ── READ ──────────────────────────────────────────────────────────────────
+    // READ
 
     public List<Criminali> findAll() {
         List<Criminali> lista = new ArrayList<>();
         String sql = "SELECT * FROM criminali";
         try (Statement st = connection.createStatement();
-             ResultSet rs = st.executeQuery(sql)) {
-            while (rs.next()) lista.add(mapRow(rs));
+                ResultSet rs = st.executeQuery(sql)) {
+            while (rs.next())
+                lista.add(mapRow(rs));
         } catch (SQLException e) {
             System.out.println("Errore findAll criminali: " + e.getMessage());
         }
@@ -54,7 +56,8 @@ public class CriminaleDao {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) return mapRow(rs);
+            if (rs.next())
+                return mapRow(rs);
         } catch (SQLException e) {
             System.out.println("Errore findById criminale: " + e.getMessage());
         }
@@ -67,7 +70,8 @@ public class CriminaleDao {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, gruppo);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) lista.add(mapRow(rs));
+            while (rs.next())
+                lista.add(mapRow(rs));
         } catch (SQLException e) {
             System.out.println("Errore findByGruppo: " + e.getMessage());
         }
@@ -77,15 +81,14 @@ public class CriminaleDao {
     // LEFT JOIN per caricare criminali + armi in una sola query
     public List<Criminali> findAllWithArmi() {
         List<Criminali> lista = new ArrayList<>();
-        String sql =
-            "SELECT c.id, c.nome, c.cognome, c.alias, c.dob, c.gruppo, " +
-            "       a.id AS arma_id, a.nome AS arma_nome, a.caricatore, " +
-            "       a.calibro, a.automatica, a.colore, a.id_criminale " +
-            "FROM criminali c " +
-            "LEFT JOIN armi a ON a.id_criminale = c.id " +
-            "ORDER BY c.id";
+        String sql = "SELECT c.id, c.nome, c.cognome, c.alias, c.dob, c.gruppo, " +
+                "       a.id AS arma_id, a.nome AS arma_nome, a.caricatore, " +
+                "       a.calibro, a.automatica, a.colore, a.id_criminale " +
+                "FROM criminali c " +
+                "LEFT JOIN armi a ON a.id_criminale = c.id " +
+                "ORDER BY c.id";
         try (Statement st = connection.createStatement();
-             ResultSet rs = st.executeQuery(sql)) {
+                ResultSet rs = st.executeQuery(sql)) {
             Criminali current = null;
             while (rs.next()) {
                 int cid = rs.getInt("id");
@@ -112,7 +115,7 @@ public class CriminaleDao {
         return lista;
     }
 
-    // ── UPDATE ────────────────────────────────────────────────────────────────
+    // UPDATE
 
     public void update(Criminali c) {
         String sql = "UPDATE criminali SET nome=?, cognome=?, alias=?, dob=?, gruppo=? WHERE id=?";
@@ -130,7 +133,7 @@ public class CriminaleDao {
         }
     }
 
-    // ── DELETE ────────────────────────────────────────────────────────────────
+    // DELETE
 
     public void delete(int id) {
         String sql = "DELETE FROM criminali WHERE id=?";
@@ -143,7 +146,7 @@ public class CriminaleDao {
         }
     }
 
-    // ── UTILITY ───────────────────────────────────────────────────────────────
+    // UTILITY
 
     private Criminali mapRow(ResultSet rs) throws SQLException {
         Criminali c = new Criminali();
