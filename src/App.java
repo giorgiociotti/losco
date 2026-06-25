@@ -62,34 +62,28 @@ public class App {
     // ── MENU ──────────────────────────────────────────────────────────────────
 
     static void menu() {
-        System.out.println("╔══════════════════════════════════╗");
-        System.out.println("║        GESTIONE COSELOSCHE       ║");
-        System.out.println("╠══════════════════════════════════╣");
-        System.out.println("║  CRIMINALI                       ║");
-        System.out.println("║  1  Lista tutti                  ║");
-        System.out.println("║  2  Cerca per ID                 ║");
-        System.out.println("║  3  Lista con le loro armi       ║");
-        System.out.println("║  4  Inserisci                    ║");
-        System.out.println("║  5  Modifica                     ║");
-        System.out.println("║  6  Elimina                      ║");
-        System.out.println("╠══════════════════════════════════╣");
-        System.out.println("║  ARMI                            ║");
-        System.out.println("║  7  Lista tutte                  ║");
-        System.out.println("║  8  Cerca per ID                 ║");
-        System.out.println("║  9  Armi di un criminale         ║");
-        System.out.println("║  10 Armi senza proprietario      ║");
-        System.out.println("║  11 Inserisci                    ║");
-        System.out.println("║  12 Modifica                     ║");
-        System.out.println("║  13 Assegna a criminale          ║");
-        System.out.println("║  14 Dissocia proprietario        ║");
-        System.out.println("║  15 Elimina                      ║");
-        System.out.println("╠══════════════════════════════════╣");
-        System.out.println("║  0  Esci                         ║");
-        System.out.println("╚══════════════════════════════════╝");
+        System.out.println("\GESTIONE COSELOSCHE ");
+        System.out.println("\tCRIMINALI                ");
+        System.out.println(" 1  Lista tutti            ");
+        System.out.println(" 2  Cerca per ID           ");
+        System.out.println(" 3  Lista con le loro armi ");
+        System.out.println(" 4  Inserisci              ");
+        System.out.println(" 5  Modifica               ");
+        System.out.println(" 6  Elimina                ");
+        System.out.println("\tARMI                      ");
+        System.out.println(" 7  Lista tutte            ");
+        System.out.println(" 8  Cerca per ID           ");
+        System.out.println(" 9  Armi di un criminale   ");
+        System.out.println(" 10 Armi senza proprietario");
+        System.out.println(" 11 Inserisci              ");
+        System.out.println(" 12 Modifica               ");
+        System.out.println(" 13 Assegna a criminale    ");
+        System.out.println(" 14 Dissocia proprietario  ");
+        System.out.println(" 15 Elimina                ");
+        System.out.println(" 0  Esci                   ");
     }
 
-    // ── CRIMINALI ─────────────────────────────────────────────────────────────
-
+//CRIMINALI
     static void listaCriminali() {
         List<Criminali> lista = criminaleService.trovaTutti();
         if (lista.isEmpty()) { System.out.println("Nessun criminale."); return; }
@@ -141,8 +135,7 @@ public class App {
         else System.out.println("Annullato.");
     }
 
-    // ── ARMI ──────────────────────────────────────────────────────────────────
-
+//ARMI
     static void listaArmi() {
         List<Armi> lista = armiService.trovaTutte();
         if (lista.isEmpty()) { System.out.println("Nessuna arma."); return; }
@@ -213,8 +206,10 @@ public class App {
         else System.out.println("Annullato.");
     }
 
-    // ── HELPER INPUT ──────────────────────────────────────────────────────────
 
+
+
+    
     static int leggiInt(String prompt) {
         while (true) {
             System.out.print(prompt);

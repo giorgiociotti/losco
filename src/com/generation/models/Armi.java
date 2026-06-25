@@ -7,7 +7,7 @@ public class Armi extends Entity {
     private String calibro;
     private boolean automatica;
     private String colore;
-    private Integer idCriminale; // nullable: arma senza proprietario
+    private Integer idCriminale;
 
     public Armi() {}
 
