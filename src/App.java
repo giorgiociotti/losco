@@ -62,7 +62,7 @@ public class App {
     // ── MENU ──────────────────────────────────────────────────────────────────
 
     static void menu() {
-        System.out.println("\GESTIONE COSELOSCHE ");
+        System.out.println("GESTIONE COSELOSCHE ");
         System.out.println("\tCRIMINALI                ");
         System.out.println(" 1  Lista tutti            ");
         System.out.println(" 2  Cerca per ID           ");
@@ -209,7 +209,7 @@ public class App {
 
 
 
-    
+
     static int leggiInt(String prompt) {
         while (true) {
             System.out.print(prompt);
